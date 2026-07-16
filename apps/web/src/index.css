@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 20% 95%; /* Cream */
+    --foreground: 220 13% 20%; /* Navy */
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 20%;
+    
+    --primary: 220 13% 20%; /* Navy */
+    --primary-foreground: 45 20% 95%; /* Cream */
+    
+    --secondary: 45 93% 47%; /* Gold */
+    --secondary-foreground: 220 13% 20%; /* Navy */
+    
+    --accent: 45 20% 95%; /* Cream */
+    --accent-foreground: 220 13% 20%; /* Navy */
+    
+    --muted: 220 13% 91%;
+    --muted-foreground: 220 9% 46%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 220 13% 85%;
+    --input: 220 13% 85%;
+    --ring: 45 93% 47%; /* Gold */
+    --radius: 0.75rem;
+
+    /* Product Specific Tokens */
+    --product-border: 45 93% 47%;
+    --wholesale-badge: 220 13% 20%;
+    --retail-badge: 45 93% 47%;
+    --wholesale-badge-foreground: 45 20% 95%;
+    --retail-badge-foreground: 220 13% 20%;
+
+    /* Order Status Tokens */
+    --status-pending: 25 95% 53%;
+    --status-confirmed: 217 91% 60%;
+    --status-packaging: 271 81% 56%;
+    --status-dispatched: 45 93% 47%;
+    --status-delivered: 142 71% 45%;
+    --status-cancelled: 0 84% 60%;
+
+    /* Admin Specific Base Tokens (Light fallback) */
+    --admin-bg: 222 47% 11%;
+    --admin-card: 222 47% 15%;
+    --admin-border: 217 32% 17%;
+    --admin-text: 210 40% 98%;
+
+    /* Footer Specific Tokens */
+    --footer-bg: 222 47% 11%;
+    --footer-text: 45 20% 95%;
+    --footer-accent: 45 93% 47%;
+    --footer-muted: 215 20% 65%;
+    --footer-border: 217 32% 17%;
+  }
+
+  .dark {
+    --background: 220 13% 15%;
+    --foreground: 45 20% 95%;
+    --card: 220 13% 18%;
+    --card-foreground: 45 20% 95%;
+    --popover: 220 13% 18%;
+    --popover-foreground: 45 20% 95%;
+    
+    --primary: 45 20% 95%; /* Cream */
+    --primary-foreground: 220 13% 20%; /* Navy */
+    
+    --secondary: 45 93% 47%; /* Gold */
+    --secondary-foreground: 220 13% 20%; /* Navy */
+    
+    --accent: 220 13% 20%; /* Navy */
+    --accent-foreground: 45 20% 95%; /* Cream */
+    
+    --muted: 220 13% 25%;
+    --muted-foreground: 220 13% 70%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 220 13% 30%;
+    --input: 220 13% 30%;
+    --ring: 45 93% 47%;
+
+    /* Footer Specific Tokens (Dark Mode) */
+    --footer-bg: 220 13% 10%;
+    --footer-text: 45 20% 95%;
+    --footer-accent: 45 93% 47%;
+    --footer-muted: 220 13% 70%;
+    --footer-border: 220 13% 20%;
+  }
+
+  /* Admin Dashboard Theme Override */
+  .admin-theme {
+    --background: var(--admin-bg);
+    --foreground: var(--admin-text);
+    --card: var(--admin-card);
+    --card-foreground: var(--admin-text);
+    --popover: var(--admin-card);
+    --popover-foreground: var(--admin-text);
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 32% 25%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217 32% 25%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: var(--admin-border);
+    --input: var(--admin-border);
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "DM Sans", sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", serif;
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-semibold leading-snug;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold leading-snug;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-medium;
+  }
+
+  p {
+    @apply leading-relaxed;
+    max-width: 65ch;
+  }
+
+  button, a {
+    @apply transition-all duration-300;
+  }
+
+  input, textarea, select {
+    font-variant-numeric: tabular-nums;
+    @apply bg-card text-card-foreground placeholder:text-muted-foreground;
+  }
+  
+  /* Hide number input arrows */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Footer Custom Utilities */
+  .bg-footer { background-color: hsl(var(--footer-bg)); }
+  .text-footer { color: hsl(var(--footer-text)); }
+  .text-footer-muted { color: hsl(var(--footer-muted)); }
+  .text-footer-accent { color: hsl(var(--footer-accent)); }
+  .text-footer-bg { color: hsl(var(--footer-bg)); }
+  .border-footer { border-color: hsl(var(--footer-border)); }
+  .bg-footer-accent { background-color: hsl(var(--footer-accent)); }
+
+  /* Order Status Badge Utilities */
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-white border-0 transition-all duration-200;
+  }
+
+  .status-pending {
+    background-color: hsl(var(--status-pending));
+  }
+
+  .status-confirmed {
+    background-color: hsl(var(--status-confirmed));
+  }
+
+  .status-packaging {
+    background-color: hsl(var(--status-packaging));
+  }
+
+  .status-dispatched {
+    background-color: hsl(var(--status-dispatched));
+  }
+
+  .status-delivered {
+    background-color: hsl(var(--status-delivered));
+  }
+
+  .status-cancelled {
+    background-color: hsl(var(--status-cancelled));
+  }
+}
+
+@layer components {
+  .hero-bg-lifestyle {
+    background-image: url('https://horizons-cdn.hostinger.com/dc68c472-4435-426a-a4de-b6452139a002/6286363ba946389ba6d0b459c6d5812f.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .image-container {
+    @apply relative overflow-hidden flex items-center justify-center;
+  }
+  
+  .product-image {
+    @apply w-full h-full object-contain;
+  }
+  
+  .hero-image {
+    @apply w-full h-full object-cover;
+  }
+  
+  .image-fallback {
+    @apply bg-muted flex flex-col items-center justify-center text-muted-foreground w-full h-full min-h-[200px] border border-border;
+  }
+
+  .product-image-container {
+    @apply relative overflow-hidden rounded-t-xl bg-white flex items-center justify-center p-6 border-b border-[hsl(var(--product-border)/0.2)] transition-colors duration-300;
+  }
+  
+  .product-card-hover {
+    @apply hover:border-[hsl(var(--product-border))] hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+
+  .carousel-container {
+    @apply relative w-full h-[60vh] md:h-[70vh] bg-black overflow-hidden flex items-center justify-center;
+  }
+
+  .carousel-media {
+    @apply absolute inset-0 w-full h-full object-contain;
+  }
+
+  .carousel-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none;
+  }
+
+  .carousel-label {
+    @apply absolute bottom-12 left-0 right-0 text-center z-20 text-white drop-shadow-lg pointer-events-none;
+  }
+
+  .carousel-label-text {
+    font-family: "Playfair Display", serif;
+    @apply text-3xl md:text-5xl lg:text-6xl font-bold tracking-wide;
+  }
+
+  .carousel-nav {
+    @apply absolute bottom-6 left-0 right-0 flex justify-center items-center gap-3 z-30;
+  }
+
+  .carousel-dot {
+    @apply w-2.5 h-2.5 rounded-full transition-all duration-300 bg-white/40 hover:bg-white/80 cursor-pointer;
+  }
+
+  .carousel-dot.active {
+    @apply w-8 bg-[hsl(var(--secondary))] hover:bg-[hsl(var(--secondary))];
+  }
+
+  /* Footer Components */
+  .footer-heading {
+    @apply text-sm font-bold mb-6 tracking-wider uppercase text-footer-accent;
+  }
+
+  .footer-link {
+    @apply text-sm text-footer-muted hover:text-footer-accent hover:translate-x-1 transition-all duration-300 inline-block;
+  }
+
+  .footer-icon {
+    @apply h-4 w-4 text-footer-accent shrink-0 mt-0.5;
+  }
+
+  .footer-contact-item {
+    @apply flex items-start gap-3 py-3 border-b border-footer last:border-0 last:pb-0;
+  }
+
+  .footer-social-btn {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-white/5 hover:bg-footer-accent hover:text-footer-bg text-footer text-xs font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 border border-white/10 hover:border-transparent hover:shadow-lg hover:shadow-yellow-500/20;
+  }
+}
