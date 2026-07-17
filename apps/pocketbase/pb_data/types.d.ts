@@ -1396,7 +1396,7 @@ type _TygojaAny = any
  * number should be high, but exceeding it may degrade performance or
  * cause other issues.
  */
-namespace os {
+declare namespace os {
  interface readdirMode extends Number{}
  interface File {
   /**
@@ -2824,7 +2824,6 @@ namespace os {
    */
   fs(): fs.FS
  }
- interface rootFS extends Root{}
  interface rootFS {
   open(name: string): fs.File
  }
@@ -3000,7 +2999,7 @@ namespace os {
  * that always use forward slashes regardless of the operating
  * system, see the [path] package.
  */
-namespace filepath {
+declare namespace filepath {
  interface match {
   /**
    * Match reports whether name matches the shell file name pattern.
@@ -3429,7 +3428,7 @@ namespace filepath {
  * security implications of doing so.
  * See https://go.dev/blog/path-security for more information.
  */
-namespace exec {
+declare namespace exec {
  interface command {
   /**
    * Command returns the [Cmd] struct to execute the named program with
@@ -3462,7 +3461,7 @@ namespace exec {
 /**
  * Package validation provides configurable and extensible rules for validating data of various types.
  */
-namespace ozzo_validation {
+declare namespace ozzo_validation {
  /**
   * Error interface represents an validation error
   */
@@ -3480,7 +3479,7 @@ namespace ozzo_validation {
 /**
  * Package dbx provides a set of DB-agnostic and easy-to-use query building methods for relational databases.
  */
-namespace dbx {
+declare namespace dbx {
  /**
   * Builder supports building SQL statements in a DB-agnostic way.
   * Builder mainly provides two sets of query building methods: those building SELECT statements
@@ -5558,7 +5557,7 @@ namespace dbx {
  }
 }
 
-namespace security {
+declare namespace security {
  interface s256Challenge {
   /**
    * S256Challenge creates base64 encoded sha256 challenge string derived from code.
@@ -5701,7 +5700,7 @@ namespace security {
  }
 }
 
-namespace filesystem {
+declare namespace filesystem {
  /**
   * FileReader defines an interface for a file resource reader.
   */
@@ -5987,7 +5986,7 @@ namespace filesystem {
  * 
  * It defines the main PocketBase App interface and its base implementation.
  */
-namespace core {
+declare namespace core {
  /**
   * App defines the main PocketBase app interface.
   * 
@@ -12362,7 +12361,7 @@ namespace core {
  }
  type _scBazif = Field
  interface fieldWithType extends _scBazif {
-  type: string
+  type(): string
  }
  interface fieldWithType {
   unmarshalJSON(data: string|Array<number>): void
@@ -14036,7 +14035,7 @@ namespace core {
  * Package mails implements various helper methods for sending common
  * emails like forgotten password, verification, etc.
  */
-namespace mails {
+declare namespace mails {
  interface sendRecordAuthAlert {
   /**
    * SendRecordAuthAlert sends a new device login alert to the specified auth record.
